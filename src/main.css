@@ -52,6 +52,12 @@ textarea {
   text-decoration: line-through;
 }
 
+@media(max-width:550px){
+  .container{
+    margin-inline:10px;
+  }
+}
+
 @media (max-width: 485px) {
   .set-todo {
     flex-direction: column;
@@ -67,3 +73,4 @@ textarea {
     width: 100%;
   }
 }
+
