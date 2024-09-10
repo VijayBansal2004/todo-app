@@ -3,36 +3,15 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit3 } from "react-icons/fi";
 import { LiaSave } from "react-icons/lia";
 
-function TodoItem({ text, date, id, onHandleDelete, todos, setTodos }) {
+function TodoItem({ text, date, id, onHandleDelete, onHandleEdit, todos, setTodos }) {
   const [isChecked, setIsChecked] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
 
   const editedText = useRef();
   const editedDate = useRef();
 
-  const onHandleEdit = () => {
+  const handleToggleEditButton = () => {
     setIsEditable(!isEditable);
-  };
-
-  const onHandleEditedSave = (id, editedText, editedDate) => {
-    // First attempt
-    // setTodos(
-    //   (todos.id = id),
-    //   (todos.text = editedText),
-    //   (todos.date = editedDate)
-    // );
-    // console.log(todos);
-    // Second attempt
-    //   const newTodos = [
-    //     ...todos,
-    //     {
-    //       id: id,
-    //       text: editedText,
-    //       date: editedDate,
-    //     },
-    //   ];
-    //   console.log(newTodos);
-    //   setTodos(newTodos);
   };
 
   return (
@@ -49,9 +28,8 @@ function TodoItem({ text, date, id, onHandleDelete, todos, setTodos }) {
           />
           <textarea
             name="text"
-            className={`text-start m-0 ${isChecked && "lineThrough"} ${
-              isEditable && "border border-2"
-            }`}
+            className={`text-start m-0 ${isChecked && "lineThrough"} ${isEditable && "border border-2"
+              }`}
             readOnly={!isEditable}
             rows={1}
             ref={editedText}
@@ -62,9 +40,8 @@ function TodoItem({ text, date, id, onHandleDelete, todos, setTodos }) {
         <div className="col-4 align-content-center">
           <textarea
             name="text"
-            className={`text-start m-0 ${isChecked && "lineThrough"} ${
-              isEditable && "border border-2"
-            }`}
+            className={`text-start m-0 ${isChecked && "lineThrough"} ${isEditable && "border border-2"
+              }`}
             readOnly={!isEditable}
             rows={1}
             ref={editedDate}
@@ -78,11 +55,7 @@ function TodoItem({ text, date, id, onHandleDelete, todos, setTodos }) {
               type="button"
               className="btn btn-light"
               onClick={() => {
-                onHandleEditedSave(
-                  id,
-                  editedText.current.value,
-                  editedDate.current.value
-                );
+                onHandleEdit(id, editedText.current.value, editedDate.current.value, isEditable, setIsEditable);
               }}
             >
               <LiaSave />
@@ -92,7 +65,7 @@ function TodoItem({ text, date, id, onHandleDelete, todos, setTodos }) {
               type="button"
               className="btn btn-light"
               onClick={() => {
-                onHandleEdit(id);
+                handleToggleEditButton()
               }}
             >
               <FiEdit3 />

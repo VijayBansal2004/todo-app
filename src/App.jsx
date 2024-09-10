@@ -16,22 +16,29 @@ function App() {
 
   const onHandleClick = (inputText, inputDate) => {
     const newTodos = [
-      ...todos,
       {
         id: uuidv4(),
         text: inputText,
         date: inputDate,
       },
+      ...todos,
     ];
     setTodos(newTodos);
   };
 
   const onHandleDelete = (id) => {
-    const newTodoList = todos.filter((i) => {
-      return i.id !== id;
+    const newTodoList = todos.filter((todo) => {
+      return todo.id !== id;
     });
     setTodos(newTodoList);
   };
+
+  const onHandleEdit = (id, inputText, inputDate, isEditable, setIsEditable) => {
+    setTodos(todos.map((todo) => (
+      todo.id === id ? { ...todo, text: inputText, date: inputDate } : todo
+    )));
+    setIsEditable(!isEditable);
+  }
 
   return (
     <>
@@ -42,6 +49,7 @@ function App() {
         <Todos
           todos={todos}
           onHandleDelete={onHandleDelete}
+          onHandleEdit={onHandleEdit}
           setTodos={setTodos}
         />
       </div>

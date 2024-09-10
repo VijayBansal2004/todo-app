@@ -1,5 +1,5 @@
 import TodoItem from "./TodoItem";
-function Todos({ todos, onHandleDelete, setTodos }) {
+function Todos({ todos, onHandleDelete, onHandleEdit, setTodos }) {
   return (
     <>
       {todos.map((i) => (
@@ -9,6 +9,7 @@ function Todos({ todos, onHandleDelete, setTodos }) {
           date={i.date}
           id={i.id}
           onHandleDelete={onHandleDelete}
+          onHandleEdit={onHandleEdit}
           todos={todos}
           setTodos={setTodos}
         />
