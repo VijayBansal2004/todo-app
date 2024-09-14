@@ -4,6 +4,7 @@ import Todos from "./components/Todos";
 import EmptyTodo from "./components/EmptyTodo";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -13,6 +14,16 @@ function App() {
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
+
+  const [searchedWord, setSearchedWord] = useState('');
+
+  const handleSearch = (todoName) => {
+    todos.forEach(todo => {
+      if (todo.text.toLowerCase().includes(todoName.toLowerCase())) {
+        setSearchedWord(todo);
+      }
+    });
+  }
 
   const onHandleClick = (inputText, inputDate) => {
     const newTodos = [
@@ -44,6 +55,7 @@ function App() {
     <>
       <div className="container">
         <TodoHeading />
+        <SearchBar handleSearch={handleSearch} searchedWord={searchedWord} />
         <SetTodo onHandleClick={onHandleClick} />
         {todos.length === 0 ? <EmptyTodo /> : ""}
         <Todos
