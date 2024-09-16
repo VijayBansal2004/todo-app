@@ -18,9 +18,9 @@ function TodoItem({ text, date, id, onHandleDelete, onHandleEdit, todos, setTodo
     <>
       <div
         id={id}
-        className="todo row d-flex justify-content-between align-content-center my-3"
+        className="todo row d-flex justify-content-between align-content-center my-3 gap-2 gap-sm-0"
       >
-        <div className="col-5 d-flex gap-3 align-items-center">
+        <div className="col-12 col-sm-5 d-flex gap-3 align-items-center">
           <input
             type="checkbox"
             checked={isChecked}
@@ -37,7 +37,7 @@ function TodoItem({ text, date, id, onHandleDelete, onHandleEdit, todos, setTodo
             {text}
           </textarea>
         </div>
-        <div className="col-4 align-content-center">
+        <div className="col-12 col-sm-4 align-content-center">
           <textarea
             name="text"
             className={`text-start m-0 ${isChecked && "lineThrough"} ${isEditable && "border border-2"
@@ -49,11 +49,11 @@ function TodoItem({ text, date, id, onHandleDelete, onHandleEdit, todos, setTodo
             {date}
           </textarea>
         </div>
-        <div className="col-3 align-content-center">
+        <div className="col-12 col-sm-3 align-content-center">
           {isEditable ? (
             <button
               type="button"
-              className="btn btn-light"
+              className="btn btn-light todoItomBtn"
               onClick={() => {
                 onHandleEdit(id, editedText.current.value, editedDate.current.value, isEditable, setIsEditable);
               }}
@@ -63,7 +63,7 @@ function TodoItem({ text, date, id, onHandleDelete, onHandleEdit, todos, setTodo
           ) : (
             <button
               type="button"
-              className="btn btn-light"
+              className="btn btn-light todoItomBtn"
               onClick={() => {
                 handleToggleEditButton()
               }}
@@ -73,7 +73,7 @@ function TodoItem({ text, date, id, onHandleDelete, onHandleEdit, todos, setTodo
           )}{" "}
           <button
             type="button"
-            className="btn btn-danger"
+            className="btn btn-danger todoItomBtn"
             onClick={() => {
               onHandleDelete(id);
             }}

@@ -11,18 +11,33 @@ function App() {
     const savedTodos = localStorage.getItem("todos");
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
+
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const [searchedWord, setSearchedWord] = useState('');
+  // const [searchedWord, setSearchedWord] = useState('');
+  const [searchingTodoArray, setSearchingTodoArray] = useState([]);
 
-  const handleSearch = (todoName) => {
-    todos.forEach(todo => {
-      if (todo.text.toLowerCase().includes(todoName.toLowerCase())) {
-        setSearchedWord(todo);
-      }
-    });
+  const handleSearch = (searchingTodo) => {
+    if (typeof searchingTodo === "string") {
+      const arr = todos.filter(todo => todo.text.toLowerCase().includes(searchingTodo.toLowerCase()))
+      setSearchingTodoArray(arr);
+    }
+    // console.log(searchingTodoArray);
+    searchingTodo.length === 0 && handlecloseSearch();
+  }
+
+  const handlecloseSearch = () => {
+    setSearchingTodoArray([]);
+  }
+
+  const handleSearchedTodo = (id) => {
+    let highlightedTodo = todos.filter((todo) => todo.id === id);
+    highlightedTodo.classlist.add('highlightedTodo');
+    setTimeout(() => {
+      highlightedTodo.classlist.remove('highlightedTodo');
+    }, 2000);
   }
 
   const onHandleClick = (inputText, inputDate) => {
@@ -55,7 +70,11 @@ function App() {
     <>
       <div className="container">
         <TodoHeading />
-        <SearchBar handleSearch={handleSearch} searchedWord={searchedWord} />
+        <SearchBar handleSearch={handleSearch}
+          searchingTodoArray={searchingTodoArray}
+          handlecloseSearch={handlecloseSearch}
+          handleSearchedTodo={handleSearchedTodo}
+        />
         <SetTodo onHandleClick={onHandleClick} />
         {todos.length === 0 ? <EmptyTodo /> : ""}
         <Todos

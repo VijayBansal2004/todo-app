@@ -12,21 +12,92 @@
   background: #626262;
 }
 
+input,
+textarea {
+  background-color: #ffffff12;
+  color: white;
+  border: none;
+  border: none;
+  line-height: 35px;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+
+input[type="checkbox"] {
+  width: 20px !important;
+  height: 20px !important;
+  border: none;
+}
+
+body {
+  background-color: black !important;
+  color: white !important;
+}
+
 .container {
   max-width: 520px;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0px 0px 38px -28px;
+  background-color: #ffffff26;
 }
 
 .heading {
   padding-bottom: 30px;
-  background: white;
 }
 
-.searchBar{
-  width:100%
+.search-section {
+  position: relative;
+}
+
+.searchBar {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffffff12;
+  margin-bottom: 10px;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
+  top: 56px;
+  background-color: #353535;
+  max-width: 95%;
+  margin-inline: 13px;
+  border-radius: 0px 0px 5px 5px;
+  padding-inline: 0;
+}
+
+.searchedDataRow {
+  margin-block: 5px;
+  cursor: pointer;
+  padding-inline: 10px;
+}
+
+.searchedDataRow:hover {
+  background-color: #00000033;
+}
+
+.crossIcon,
+.searchIcon {
+  position: absolute;
+  right: 20px;
+  font-size: 1.5rem;
+  top: 15px;
+  cursor: pointer;
+}
+
+.searchedData {
+  margin: 0 !important;
+  align-content: center;
+  line-height: 35px;
 }
 
 .button {
@@ -36,15 +107,23 @@
 }
 
 .set-todo {
-  padding: 5px 0;
-  background: white;
-  box-shadow: 0px 9px 9px -12px;
+  padding: 10px 0;
   width: 100%;
   margin: auto;
+  border-bottom: 1px solid #ffffff2e;
 }
+
 .todo {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.highlightedTodo {
+  background-color: #005a00;
+}
+
+.todoItomBtn {
+  width: 47%;
 }
 
 textarea {
@@ -52,13 +131,14 @@ textarea {
   width: 100%;
   height: fit-content;
 }
+
 .lineThrough {
   text-decoration: line-through;
 }
 
-@media(max-width:550px){
-  .container{
-    margin-inline:10px;
+@media(max-width:550px) {
+  .container {
+    margin-inline: 10px;
   }
 }
 
@@ -69,12 +149,13 @@ textarea {
     align-items: center;
     padding-bottom: 20px;
   }
+
   .set-todo div {
     width: 100%;
   }
+
   .set-todo div input,
   .set-todo div button {
     width: 100%;
   }
 }
-
